@@ -5,36 +5,37 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Temperatura</title>
     </h:head>
     <h:body>
-        <p:panel id="pnlTemperatura" header="Calcular Temperaturas">
-            <h:form id="frmTemperatura">
-                <h:panelGrid id="tblCalculadora" columns="3">
-                    <p:outputLabel id="lblTemperatura" value="Temperatura: "/>
-                    <p:inputNumber id="txtGrados"  value="#{temperaturaFormBean}" />
-                    <p:selectOneMenu  id="seleccionarEscala" value="">
-                        <f:selectItem itemValue="celsius" itemLabel="ºC"/>
-                        <f:selectItem itemValue="farenheit" itemLabel="ºF"/>
-                        <f:selectItem itemValue="kelvin" itemLabel="ºK"/>
+        <p:panel id="pnltemperatura" header="CONVERTIDOR DE TEMPERATURA" >
+            <h:form id="frmtemperatura" >
+                <p:panelGrid id="pnltemperatura" columns="2">
+                    <p:outputLabel id="lbltemperatura" value="Ingrese Temperatura"/>
+                    <p:inputNumber id="txttemperatura" decimalPlaces="2"
+                                   thousandSeparator="." decimalSeparator=","
+                                   value="#{escalaFormBean.escala.temperatura}"/>
+                </p:panelGrid>
+                <p:outputLabel/>
+                <p:panelGrid id="tbltipo" columns="2">
+                    <p:outputLabel id="lbltipo" value="Tipo de escala: "/>
+                    <p:selectOneMenu  value="#{escalaFormBean.escala.tipo}" >
+                        <f:selectItem itemValue="Grados Fahrenheit" itemLabel="Grados Fahrenheit"/>
+                        <f:selectItem itemValue="Celsius" itemLabel="Celsius"/>
+                        <f:selectItem itemValue="Kelvin" itemLabel="Kelvin"/>
                     </p:selectOneMenu>
-                    
-                    
-                    <p:outputLabel id="lblEscala" value="Pasar a: "/>
-                    <p:selectOneMenu id="pasarAEscala" value="">
-                        <f:selectItem itemValue="celsius" itemLabel="Celcius"/>
-                        <f:selectItem itemValue="farenheit" itemLabel="Farenheit"/>
-                        <f:selectItem itemValue="kelvinº" itemLabel="Kelvin"/>
-                    </p:selectOneMenu>
+                    <p:outputLabel id="lblconversor" value="Convertir a"/>
+                    <p:selectOneMenu value="#{escalaFormBean.tipo}">
+                        <f:selectItem itemValue="Grados Fahrenheit" itemLabel="Grados Fahrenheit"/>
+                        <f:selectItem itemValue="Celsius" itemLabel="Celsius"/>
+                        <f:selectItem itemValue="Kelvin" itemLabel="Kelvin"/>
+                    </p:selectOneMenu> 
                     <p:outputLabel/>
-                    <p:commandButton id="btnPasarTemperatura" value="Calcular"
-                                     update="lblValorCalculoGrados"/>
-                    
-                    <p:outputLabel id="lblResultadoGrados" value="Resultado: " />
-                    <p:outputLabel id="lblValorCalculoGrados"  
-                                   value=""/>
-                    
-                </h:panelGrid>
+                    <p:commandButton id="btnconversor" value="CONVERTIR"
+                                     update="lblResultado"/>
+                    <p:outputLabel id="lblresultadoconversor" value="Resultado"/>
+                    <p:outputLabel id="lblResultado" value="#{escalaFormBean.conversorTemperatura()}"/>
+                </p:panelGrid>
             </h:form>
         </p:panel>
     </h:body>
