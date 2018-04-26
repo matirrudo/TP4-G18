@@ -16,6 +16,7 @@ public class RegistroFormBean implements Serializable {
     private ArrayList<Integer> listaNumeros = new ArrayList<>();
 
     public RegistroFormBean() {
+        
     }
 
     public RegistroFormBean(int num) {
