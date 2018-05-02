@@ -31,36 +31,33 @@
                 </p:panelGrid>    
          
                 <p:commandButton id="btnregistro" value="Registrar"
-                                 actionListener="#{profesorManagedBean.agregarProfesor()}"/>
-            </h:form>
-            <h:form id="frmregistro">
+                                 actionListener="#{profesorManagedBean.agregarProfesor()}"
+                                 update="opdatos"/>
+          
                 <p:commandButton id="botonregistro" value="Mostrar Datos"
                                  type="button"/>
                 <p:overlayPanel id="opdatos" for="botonregistro" 
                     hideEffect="fade" dynamic="true" style="width:600px ">
-                    <p:dataTable var="datos" value="#{profesorManagedBean.lista}"
-                                 rows="5" >
-                        <p:column headerText="Legajo" >
-                            <p:outputLabel value="#{profesorManagedBean.profesor.legajo}"/>
-                        </p:column>
-                        <p:column headerText="Nombre" >
-                            <p:outputLabel value="#{profesorManagedBean.profesor.nombre}"/>
-                        </p:column>
-                        <p:column headerText="Apellido">
-                            <p:outputLabel value="#{profesorManagedBean.profesor.apellido}"/>
-                        </p:column>
-                        <p:column headerText="Fecha de Nacimiento">
-                            <p:outputLabel value="#{profesorManagedBean.profesor.fechaNacimiento}"/>
-                        </p:column>
-                        <p:column headerText="Telefono">
-                            <p:outputLabel value="#{profesorManagedBean.profesor.telefono}"/>
-                        </p:column>
-                        <p:column headerText="Direccion">
-                            <p:outputLabel value="#{profesorManagedBean.profesor.direccion}"/>
-                        </p:column>
-                                 
-                    </p:dataTable>
-                        
+                    <p:panelGrid id="pnlresultado" columns="6">  
+                      <p:outputLabel value="Legajo"/>
+                      <p:outputLabel value="Nombre"/>
+                      <p:outputLabel value="Apellido"/>
+                      <p:outputLabel value="Fecha de Nacimiento"/>
+                      <p:outputLabel value="Telefono"/>
+                      <p:outputLabel value="Direccion"/>
+                      <p:outputLabel value="#{profesorManagedBean.profesor.legajo}"/>
+                      
+                      <p:outputLabel value="#{profesorManagedBean.profesor.nombre}"/>  
+                      
+                      <p:outputLabel value="#{profesorManagedBean.profesor.apellido}"/>
+                      
+                      <p:outputLabel value="#{profesorManagedBean.profesor.fechaNacimiento}"/>
+                      
+                      
+                      <p:outputLabel value="#{profesorManagedBean.profesor.telefono}"/>           
+                      
+                      <p:outputLabel value="#{profesorManagedBean.profesor.direccion}"/>            
+                    </p:panelGrid >
                 </p:overlayPanel>
             </h:form>
             
