@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:body>
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel id="lblIsbn" value="ISBN: "/>
+                <p:inputText value="#{libroBean.libro.isbn}" />
+                <p:outputLabel id="lblTitulo" value="Titulo: "/>
+                <p:inputText value="#{libroBean.libro.titulo}"/>
+                <p:outputLabel id="lblAutor" value="Autor: "/>
+                <p:selectOneMenu id="menuAutor" value="#{libroBean.libro.autor}" >
+                    <f:selectItem itemValue="Pablo Neruda" itemLabel="Pablo Neruda"/>
+                                 <f:selectItem itemValue="Jorge Luis Borges" itemLabel="Jorge Luis Borges"/>
+                </p:selectOneMenu>
+                <p:outputLabel id="lblPrecio" value="Precio: "/>
+                <p:inputText value="#{libroBean.libro.precio}"/>
+                 
+            </p:panelGrid>
+            
+            <p/>
+            <p:commandButton id="btnRegistrar" value="Registrar"  actionListener="#{libroBean.agregarLibro()}" update="lstLibro"/> 
+            <p/>
+            <p:dataTable id="lstLibro" value="#{libroBean.libro}" var="lib" >
+                <p:column>
+                    <f:facet name="header">
+                    <p:outputLabel value="ISBN" />    
+                    </f:facet>
+                    <p:outputLabel value="#{lib.isbn}" onkeypress=""/>
+                </p:column>
+                
+                <p:column>
+                     <f:facet name="header">
+                    <p:outputLabel value="Titulo" />    
+                    </f:facet>
+                    <p:outputLabel value="#{lib.titulo}" />
+                </p:column>
+                
+                <p:column>
+                     <f:facet name="header">
+                    <p:outputLabel value="autor" />    
+                    </f:facet>
+                    <p:outputLabel value="#{lib.autor}" />
+                </p:column>
+                
+                <p:column>
+                     <f:facet name="header">
+                    <p:outputLabel value="precio" />    
+                    </f:facet>
+                    <p:outputLabel value="#{lib.precio}" />
+                </p:column>
+                
+                <p:column>
+                    <p:commandLink value="Eliminar" actionListener="#{libroBean.eliminarLibro(lib)}" update="lstLibro"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+    </h:body>
+</html>
+
