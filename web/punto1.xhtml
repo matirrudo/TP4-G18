@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Temperatura</title>
+    </h:head>
+    <h:body>
+        <p:panel id="pnltemperatura" header="CONVERTIDOR DE TEMPERATURA" >
+            <h:form id="frmtemperatura" >
+                <p:panelGrid id="pnltemperatura" columns="2">
+                    <p:outputLabel id="lbltemperatura" value="Ingrese Temperatura"/>
+                    <p:inputNumber id="txttemperatura" decimalPlaces="2"
+                                   thousandSeparator="." decimalSeparator=","
+                                   value="#{escalaFormBean.escala.temperatura}"/>
+                </p:panelGrid>
+                <p:outputLabel/>
+                <p:panelGrid id="tbltipo" columns="2">
+                    <p:outputLabel id="lbltipo" value="Tipo de escala: "/>
+                    <p:selectOneMenu  value="#{escalaFormBean.escala.tipo}" >
+                        <f:selectItem itemValue="Grados Fahrenheit" itemLabel="Grados Fahrenheit"/>
+                        <f:selectItem itemValue="Celsius" itemLabel="Celsius"/>
+                        <f:selectItem itemValue="Kelvin" itemLabel="Kelvin"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel id="lblconversor" value="Convertir a"/>
+                    <p:selectOneMenu value="#{escalaFormBean.tipo}">
+                        <f:selectItem itemValue="Grados Fahrenheit" itemLabel="Grados Fahrenheit"/>
+                        <f:selectItem itemValue="Celsius" itemLabel="Celsius"/>
+                        <f:selectItem itemValue="Kelvin" itemLabel="Kelvin"/>
+                    </p:selectOneMenu> 
+                    <p:outputLabel/>
+                    <p:commandButton id="btnconversor" value="CONVERTIR"
+                                     update="lblResultado"/>
+                    <p:outputLabel id="lblresultadoconversor" value="Resultado"/>
+                    <p:outputLabel id="lblResultado" value="#{escalaFormBean.conversorTemperatura()}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:panel>
+    </h:body>
+</html>
+
