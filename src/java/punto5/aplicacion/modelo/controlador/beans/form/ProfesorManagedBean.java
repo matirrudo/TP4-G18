@@ -22,6 +22,7 @@ public class ProfesorManagedBean implements Serializable{
     }
     
 
+    
     public Profesor getProfesor() {
         return profesor;
     }

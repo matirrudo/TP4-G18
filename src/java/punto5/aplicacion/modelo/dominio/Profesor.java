@@ -27,8 +27,6 @@ public class Profesor implements Serializable{
         this.telefono = telefono;
         this.direccion = direccion;
     }
-
-    
     
     public int getLegajo() {
         return legajo;
