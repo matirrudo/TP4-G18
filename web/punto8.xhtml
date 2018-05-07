@@ -5,17 +5,18 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Punto 7</title>
+        <title>Punto 8</title>
     </h:head>
     <h:body>
+        
         <h:form>
             <p:panelGrid columns="2">
                 <p:outputLabel id="lblIsbn" value="ISBN: "/>
-                <p:inputNumber decimalPlaces="0" value="#{libroBean.libro.isbn}" />
+                <p:inputNumber decimalPlaces="0" value="#{libroBeans.libro.isbn}" />
                 <p:outputLabel id="lblTitulo" value="Titulo: "/>
-                <p:inputText value="#{libroBean.libro.titulo}"/>
+                <p:inputText value="#{libroBeans.libro.titulo}"/>
                 <p:outputLabel id="lblAutor" value="Autor: "/>
-                <p:selectOneMenu id="menuAutor" value="#{libroBean.libro.autor}" >
+                <p:selectOneMenu id="menuAutor" value="#{libroBeans.libro.autor}" >
                     <f:selectItem itemValue="Dan Brown" itemLabel="Dan Brown"/>
                     <f:selectItem itemValue="Paulo Coelho" itemLabel="Paulo Coelho"/>
                     <f:selectItem itemValue="J.R.R. Tolkien" itemLabel="J.R.R. Tolkien"/>
@@ -28,13 +29,14 @@
                     <f:selectItem itemValue="Eduardo Galeano" itemLabel="Eduardo Galeano"/>
                 </p:selectOneMenu>
                 <p:outputLabel id="lblPrecio" value="Precio: "/>
-                <p:inputNumber decimalPlaces="2" value="#{libroBean.libro.precio}"/>  
+                <p:inputNumber decimalPlaces="2" value="#{libroBeans.libro.precio}"/>  
             </p:panelGrid>
             
             <p/>
-            <p:commandButton id="btnRegistrar" value="Registrar"  actionListener="#{libroBean.agregarLibro()}" update="lstLibro"/> 
+            <p:commandButton id="btnRegistrar" value="Registrar"  actionListener="#{libroBeans.agregarLibro()}" update="lstLibro"/> 
             <p/>
-            <p:dataTable id="lstLibro" value="#{libroBean.getaLstLibros()}" var="lib" >
+            <p:dataTable id="lstLibro" value="#{libroBeans.getaLstLibros()}" var="lib">
+                
                 <p:column>
                     <f:facet name="header">
                     <p:outputLabel value="ISBN" />    
@@ -49,22 +51,18 @@
                     <p:outputLabel value="#{lib.titulo}" />
                 </p:column>
                 
-                <p:column>
+                <p:column filterBy="#{lib.autor}" filterMatchMode="contains" >
                      <f:facet name="header">
-                    <p:outputLabel value="autor" />    
+                    <p:outputLabel value="Autor" />    
                     </f:facet>
                     <p:outputLabel value="#{lib.autor}" />
                 </p:column>
                 
                 <p:column>
                      <f:facet name="header">
-                    <p:outputLabel value="precio" />    
+                    <p:outputLabel value="Precio" />    
                     </f:facet>
                     <p:outputLabel value="#{lib.precio}" />
-                </p:column>
-               
-                 <p:column>
-                    <p:commandLink value="Eliminar" actionListener="#{libroBean.eliminarLibro(lib)}" update="lstLibro"/>
                 </p:column>
             </p:dataTable>
         </h:form>
