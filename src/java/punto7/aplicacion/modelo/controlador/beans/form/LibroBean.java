@@ -1,7 +1,7 @@
 package punto7.aplicacion.modelo.controlador.beans.form;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 //import javax.faces.bean.ViewScoped;
@@ -10,9 +10,9 @@ import punto7.aplicacion.modelo.dominio.Libro;
 
 @ManagedBean
 @RequestScoped
-public class LibroBean {
+public class LibroBean implements Serializable{
     private Libro libro=new Libro();
-    private static List<Libro> lstLibros = new ArrayList();
+
     private static ArrayList<Libro> aLstLibros = new ArrayList();
     
     public LibroBean() {
@@ -34,14 +34,7 @@ public class LibroBean {
         this.libro = libro;
     }
 
-    public static List<Libro> getLstLibros() {
-        return lstLibros;
-    }
 
-    public static void setLstLibros(List<Libro> lstLibros) {
-        LibroBean.lstLibros = lstLibros;
-    }
-    
     public void agregarLibro(){
         LibroBean.aLstLibros.add(this.libro); 
     }  

@@ -1,9 +1,9 @@
 
 package punto7.aplicacion.modelo.dominio;
 
-//import java.io.Serializable;
+import java.io.Serializable;
 
-public class Libro {
+public class Libro implements Serializable{
     private int isbn;
     private String titulo;
     private String nombre;
