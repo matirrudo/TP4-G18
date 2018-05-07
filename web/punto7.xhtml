@@ -28,7 +28,7 @@
             <p/>
             <p:commandButton id="btnRegistrar" value="Registrar"  actionListener="#{libroBean.agregarLibro()}" update="lstLibro"/> 
             <p/>
-            <p:dataTable id="lstLibro" value="#{libroBean.libro}" var="lib" >
+            <p:dataTable id="lstLibro" value="#{libroBean.getaLstLibros()}" var="lib" >
                 <p:column>
                     <f:facet name="header">
                     <p:outputLabel value="ISBN" />    
@@ -58,6 +58,10 @@
                 </p:column>
                 
                 <p:column>
+                    <p:commandLink value="Modificar" actionListener="#{libroBean.eliminarLibro(lib)}" update="lstLibro"/>
+                </p:column>
+                
+                 <p:column>
                     <p:commandLink value="Eliminar" actionListener="#{libroBean.eliminarLibro(lib)}" update="lstLibro"/>
                 </p:column>
             </p:dataTable>

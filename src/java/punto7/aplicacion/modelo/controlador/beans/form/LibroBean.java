@@ -13,8 +13,17 @@ import punto7.aplicacion.modelo.dominio.Libro;
 public class LibroBean {
     private Libro libro=new Libro();
     private static List<Libro> lstLibros = new ArrayList();
+    private static ArrayList<Libro> aLstLibros = new ArrayList();
     
     public LibroBean() {
+    }
+    
+    public static ArrayList<Libro> getaLstLibros() {
+        return aLstLibros;
+    }
+
+    public static void setaLstLibros(ArrayList<Libro> aLstLibros) {
+        LibroBean.aLstLibros = aLstLibros;
     }
 
     public Libro getLibro() {
@@ -34,11 +43,11 @@ public class LibroBean {
     }
     
     public void agregarLibro(){
-        LibroBean.lstLibros.add(this.libro); 
+        LibroBean.aLstLibros.add(this.libro); 
     }  
     
     public void eliminarLibro(Libro libro){
-        LibroBean.lstLibros.remove(libro);
+        LibroBean.aLstLibros.remove(libro);
         
     }
     
