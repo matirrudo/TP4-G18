@@ -8,20 +8,24 @@
     </h:head>
     <h:body>
         <p:panel>
-            <h:form>
-                <p:panelGrid columns="3" >
+       
+            <h:form id="frmnumero">
+                <p:panelGrid columns="4" >
                     <p:outputLabel value="Ingrese numero: "/>
-                    <p:inputNumber value="#{registroFormBean.num}"/>
+                    <p:inputNumber id="numero" value="#{registroFormBean.num}"
+                                   decimalPlaces="0"
+                                   required="true" requiredMessage="Ingrese numero"/>
+                    <p:message for="numero" />
                     <p:commandButton value="Agregar"
                                      actionListener="#{registroFormBean.agregarNumero()}"
-                                     update="frmNumeros"/>
+                                     update="frmnumero frmNumeros"/>
                 </p:panelGrid>
 
             </h:form>
             <h:form id="frmNumeros">
 
                 <p:dataTable id="tblRegistroNumeros" value="#{registroFormBean.listaNumeros }"
-                             var="numero">
+                             var="numero" >
                     <p:column headerText="Numero Ingresado">
                         <p:outputLabel value="#{numero}"/>
                     </p:column>

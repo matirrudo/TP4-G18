@@ -2,35 +2,50 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>REGISTRO DE PROFESOR</title>
     </h:head>
     <h:body>
         <p:panel id="pnlprofesor" header="REGISTRO DE PROFESOR">
             <h:form id="frmprofesor" >
-                <p:panelGrid id="tblprofesor" columns="2" >
+                <p:panelGrid id="tblprofesor" columns="3" >
                     <p:outputLabel id="lbllegajo" value="Legajo"/>
-                    <p:inputNumber id="txtlegajo" decimalPlaces="0"
-                                   value="#{profesorManagedBean.profesor.legajo}"/>
+                    <p:inputNumber id="txtlegajo" decimalPlaces="0" value="#{profesorManagedBean.profesor.legajo}"
+                       required="true" requiredMessage="Ingrese legajo">
+                        <f:validateLength maximum="4" minimum="4"/>
+                    </p:inputNumber>
+                    <p:message for="txtlegajo"/>
                     <p:outputLabel id="lblnombre" value="Nombre"/>
-                    <p:inputText id="txtnombre" 
-                                 value="#{profesorManagedBean.profesor.nombre}"/>
+                    <p:inputText id="txtnombre" type="text" 
+                                 value="#{profesorManagedBean.profesor.nombre}"
+                                 required="true"/>
+                    <p:message for="txtnombre"/>
                     <p:outputLabel id="lblapellido" value="Apellido"/>
-                    <p:inputText id="txtapellido" 
-                                 value="#{profesorManagedBean.profesor.apellido}"/>
-                    <p:outputLabel id="lblfecha" value="Fecha de Nacimiento"/>
+                    <p:inputText id="txtapellido" type="text"
+                                 value="#{profesorManagedBean.profesor.apellido}"
+                                 required="true"/>
+                    <p:message for="txtapellido"/>
+                    <p:outputLabel id="lblfecha" value="Fecha de Nacimiento(dd/MM/yyyy)"/>
                     <p:inputText id="txtfecha" 
-                                 value="#{profesorManagedBean.profesor.fechaNacimiento}"/>
+                                 value="#{profesorManagedBean.profesor.fechaNacimiento}" required="true">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </p:inputText>
+                    <p:message for="txtfecha"/>
                     <p:outputLabel id="lbltelefono" value="Telefono"/>
                     <p:inputNumber id="txttelefono" decimalPlaces="0"
-                                   value="#{profesorManagedBean.profesor.telefono}"/>
+                                   value="#{profesorManagedBean.profesor.telefono}">
+                        <f:validateLength maximum="12"/>
+                    </p:inputNumber>
+                    <p:message for="txttelefono"/>
                     <p:outputLabel id="lbldireccion" value="Direccion"/>
-                    <p:inputText id="txtdireccion" 
+                    <p:inputText id="txtdireccion" required="true"
                                  value="#{profesorManagedBean.profesor.direccion}"/>
+                    <p:message for="txtdireccion"/>
                 </p:panelGrid>    
                 <p:commandButton id="botonregistro" value="Registrar"
-                                 update="dtprofesor"/>
+                                 update="tblprofesor dtprofesor"/>
                 <p:overlayPanel id="opdatos" for="botonregistro"
                     hideEffect="fade" dynamic="true" style="width:600px " >
                     <p:panel id="pnldatos" header="DATOS DEL PROFESOR">
