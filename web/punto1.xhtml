@@ -9,32 +9,38 @@
     </h:head>
     <h:body>
         <p:panel id="pnltemperatura" header="CONVERTIDOR DE TEMPERATURA" >
+            <p:growl id="msj"></p:growl>
             <h:form id="frmtemperatura" >
                 <p:panelGrid id="pnltemperatura" columns="2">
                     <p:outputLabel id="lbltemperatura" value="Ingrese Temperatura"/>
                     <p:inputNumber id="txttemperatura" decimalPlaces="2"
+                                   required="true" requiredMessage="Ingrese valor a convertir"
                                    thousandSeparator="." decimalSeparator=","
                                    value="#{escalaFormBean.escala.temperatura}"/>
                 </p:panelGrid>
                 <p:outputLabel/>
                 <p:panelGrid id="tbltipo" columns="2">
                     <p:outputLabel id="lbltipo" value="Tipo de escala: "/>
-                    <p:selectOneMenu  value="#{escalaFormBean.escala.tipo}" >
+                    <p:selectOneMenu  value="#{escalaFormBean.escala.tipo}"
+                                      required="true" requiredMessage="Selecione tipo de escala">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
                         <f:selectItem itemValue="Grados Fahrenheit" itemLabel="Grados Fahrenheit"/>
                         <f:selectItem itemValue="Celsius" itemLabel="Celsius"/>
                         <f:selectItem itemValue="Kelvin" itemLabel="Kelvin"/>
                     </p:selectOneMenu>
                     <p:outputLabel id="lblconversor" value="Convertir a"/>
-                    <p:selectOneMenu value="#{escalaFormBean.tipo}">
+                    <p:selectOneMenu value="#{escalaFormBean.tipo}"
+                                     required="true" requiredMessage="Seleccione tipo de escala a covertir">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""/>
                         <f:selectItem itemValue="Grados Fahrenheit" itemLabel="Grados Fahrenheit"/>
                         <f:selectItem itemValue="Celsius" itemLabel="Celsius"/>
                         <f:selectItem itemValue="Kelvin" itemLabel="Kelvin"/>
                     </p:selectOneMenu> 
                     <p:outputLabel/>
                     <p:commandButton id="btnconversor" value="CONVERTIR"
-                                     update="lblResultado"/>
+                                     update="msj lblResultado"/>
                     <p:outputLabel id="lblresultadoconversor" value="Resultado"/>
-                    <p:outputLabel id="lblResultado" value="#{escalaFormBean.conversorTemperatura()}"/>
+                    <p:outputLabel id="lblResultado"  value="#{escalaFormBean.conversorTemperatura()}"/>
                 </p:panelGrid>
             </h:form>
         </p:panel>
