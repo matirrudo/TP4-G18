@@ -15,14 +15,7 @@
                              var="a" editable="true">
                     <p:ajax event="rowEdit" listener="#{autoManagedBean.modificarAuto}" update=":frmLista:msg"/>
                     <p:column headerText="Patente" >
-                        <p:cellEditor >
-                            <f:facet name="output">
-                                <p:outputLabel value="#{a.patente}"/>
-                            </f:facet>
-                            <f:facet name="input" >
-                                <p:inputText value="#{autoManagedBean.patente}"/>
-                            </f:facet>
-                        </p:cellEditor>
+                        <p:outputLabel value="#{a.patente}"/>
                     </p:column>
                     <p:column headerText="Marca" >
                         <p:cellEditor >

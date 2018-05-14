@@ -5,47 +5,43 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>REGISTRO DE PROFESOR</title>
+        <title>Aplicacion Registro de Profesor</title>
     </h:head>
     <h:body>
         <p:panel id="pnlprofesor" header="REGISTRO DE PROFESOR">
+            <p:growl id="growlGral"></p:growl>
             <h:form id="frmprofesor" >
-                <p:panelGrid id="tblprofesor" columns="3" >
-                    <p:outputLabel id="lbllegajo" value="Legajo"/>
-                    <p:inputNumber id="txtlegajo" decimalPlaces="0" value="#{profesorManagedBean.profesor.legajo}"
-                       required="true" requiredMessage="Ingrese legajo">
-                        <f:validateLength maximum="4" minimum="4"/>
+                <p:panelGrid id="tblprofesor" columns="2" >
+                    <p:outputLabel id="lbllegajo" value="Legajo" />
+                    <p:inputNumber id="txtlegajo" decimalPlaces="0" required="true" requiredMessage="Ingrese legajo"
+                                   value="#{profesorManagedBean.profesor.legajo}" validatorMessage="Legajo se permiten 6 digitos" >
+                        <f:validateLength maximum="6"  />
                     </p:inputNumber>
-                    <p:message for="txtlegajo"/>
-                    <p:outputLabel id="lblnombre" value="Nombre"/>
-                    <p:inputText id="txtnombre" type="text" 
+                    <p:outputLabel id="lblnombre" value="Nombre" />
+                    <p:inputText id="txtnombre" 
                                  value="#{profesorManagedBean.profesor.nombre}"
-                                 required="true"/>
-                    <p:message for="txtnombre"/>
+                                 required="true" />
                     <p:outputLabel id="lblapellido" value="Apellido"/>
-                    <p:inputText id="txtapellido" type="text"
+                    <p:inputText id="txtapellido" 
                                  value="#{profesorManagedBean.profesor.apellido}"
-                                 required="true"/>
-                    <p:message for="txtapellido"/>
-                    <p:outputLabel id="lblfecha" value="Fecha de Nacimiento(dd/MM/yyyy)"/>
+                                 required="true" requiredMessage="Ingrese apellido"/>
+                    <p:outputLabel id="lblfecha" value="Fecha de Nacimiento (dd/mm/yyyy)"/>
                     <p:inputText id="txtfecha" 
-                                 value="#{profesorManagedBean.profesor.fechaNacimiento}" required="true">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                 value="#{profesorManagedBean.profesor.fechaNacimiento}"
+                                 required="true" converterMessage="Formato de Fecha (dd/mm/yyyy)">
+                        <f:convertDateTime pattern="dd/mm/yyyy" />
                     </p:inputText>
-                    <p:message for="txtfecha"/>
                     <p:outputLabel id="lbltelefono" value="Telefono"/>
                     <p:inputNumber id="txttelefono" decimalPlaces="0"
-                                   value="#{profesorManagedBean.profesor.telefono}">
-                        <f:validateLength maximum="12"/>
-                    </p:inputNumber>
-                    <p:message for="txttelefono"/>
+                                   value="#{profesorManagedBean.profesor.telefono}"/>
                     <p:outputLabel id="lbldireccion" value="Direccion"/>
-                    <p:inputText id="txtdireccion" required="true"
-                                 value="#{profesorManagedBean.profesor.direccion}"/>
-                    <p:message for="txtdireccion"/>
-                </p:panelGrid>    
+                    <p:inputText id="txtdireccion" 
+                                 value="#{profesorManagedBean.profesor.direccion}"
+                                 required="true" requiredMessage="Ingrese Direccion"/>
+                </p:panelGrid>   
+                <p:commandButton id="validar" value="Validar" update=":growlGral"/>
                 <p:commandButton id="botonregistro" value="Registrar"
-                                 update="tblprofesor dtprofesor"/>
+                                 update="dtprofesor" />
                 <p:overlayPanel id="opdatos" for="botonregistro"
                     hideEffect="fade" dynamic="true" style="width:600px " >
                     <p:panel id="pnldatos" header="DATOS DEL PROFESOR">
@@ -71,7 +67,7 @@
                     </p:dataTable>
                    </p:panel>     
                 </p:overlayPanel>
-            </h:form>
+                </h:form>
         </p:panel>
     </h:body>
 </html>
